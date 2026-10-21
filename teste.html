@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exemplos de Listas HTML</title>
+</head>
+<body>
+
+    <h1>Listas em HTML</h1>
+
+    <!-- 1. Lista não ordenada -->
+    <h2>1. Lista não ordenada (ul)</h2>
+
+    <ul>
+        <li>Maçã</li>
+        <li>Banana</li>
+        <li>Uva</li>
+    </ul>
+
+
+    <!-- 2. Lista ordenada -->
+    <h2>2. Lista ordenada (ol)</h2>
+
+    <ol>
+        <li>Acordar</li>
+        <li>Tomar café</li>
+        <li>Estudar HTML</li>
+    </ol>
+
+
+    <!-- 3. Lista de definições -->
+    <h2>3. Lista de definições (dl)</h2>
+
+    <dl>
+        <dt>HTML</dt>
+        <dd>Linguagem usada para estruturar páginas web.</dd>
+
+        <dt>CSS</dt>
+        <dd>Linguagem usada para estilizar páginas web.</dd>
+
+        <dt>JavaScript</dt>
+        <dd>Linguagem usada para adicionar interatividade.</dd>
+    </dl>
+
+
+    <table>
+        <caption>Notas dos alunos por grupo e matéria</caption>
+        <thead>
+            <tr>
+                <th id="grupo" rowspan="2"scope="col">Grupos principais</th>
+                <th id="alunos" rowspan="2"scope="col">Alunos</th>
+                <th id="matérias" rowspan="2"scope="colgroup">Matérias</th>
+            </tr>
+            <tr>
+                <th id="portugues" scope="col">Português</th>
+                <th id="matemática"scope="col">Matemática</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th id="a" rowspan="2" scope="rowgroup">A</th>
+                <th id="paulo" scope="row">Paulo</th>
+                <td headers="a paulo portugues">7</td>
+                <td headers="a paulo matematica">8</td>
+            </tr>
+            <tr>
+                <th id="marcos" scope="row">Marcos</th>
+                <td headers="a marcos portugues">6</td>
+                <td headers="a marcos matematica">9</td>
+            </tr>
+        <tr>
+            <th id="b" scope="rowgroup">8</th>
+            <th id="rosa" scope="row">8</th>
+            <td headers="b rosa portugues">9</td>
+            <td headers="b rosa matematica">10</td>
+        </tr>
+        </tbody>
+
+        <tfoot>
+            <tr>
+                <th colspan="2" scope="row">Média</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+</body>
+</html>

@@ -1,0 +1,764 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Questionário de T.I.</title>
+
+    <style>
+
+        /* =========================
+           ESTILO GERAL DA PÁGINA
+        ========================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            padding: 30px;
+            color: #222;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        /* =========================
+           CABEÇALHO
+        ========================== */
+
+        .cabecalho {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cabecalho h1 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        .cabecalho p {
+            color: #666;
+        }
+
+        /* =========================
+           QUESTÕES
+        ========================== */
+
+        .questao {
+            background-color: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .questao h2 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #1e3c72;
+        }
+
+        /* =========================
+           ALTERNATIVAS
+        ========================== */
+
+        .alternativa {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: white;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .alternativa:hover {
+            background-color: #f0f4ff;
+            border-color: #2a5298;
+        }
+
+        /* Resposta correta */
+
+        .correta {
+            background-color: #28a745 !important;
+            color: white;
+            border-color: #28a745 !important;
+        }
+
+        /* Resposta errada */
+
+        .errada {
+            background-color: #dc3545 !important;
+            color: white;
+            border-color: #dc3545 !important;
+        }
+
+        /* Desabilita visualmente depois da resposta */
+
+        .desativada {
+            cursor: not-allowed;
+            opacity: 0.85;
+        }
+
+        /* =========================
+           RESULTADO
+        ========================== */
+
+        #resultado {
+            display: none;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin-top: 25px;
+        }
+
+        #resultado h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+        }
+
+        #pontuacao {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        /* =========================
+           BOTÃO REINICIAR
+        ========================== */
+
+        #reiniciar {
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #reiniciar:hover {
+            background-color: #2a5298;
+        }
+
+        /* =========================
+           MENSAGEM DA QUESTÃO
+        ========================== */
+
+        .mensagem {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .mensagem.acerto {
+            color: #28a745;
+        }
+
+        .mensagem.erro {
+            color: #dc3545;
+        }
+
+        /* =========================
+           RESPONSIVIDADE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 15px;
+            }
+
+            .cabecalho,
+            .questao {
+                padding: 20px;
+            }
+
+            .questao h2 {
+                font-size: 18px;
+            }
+
+            .alternativa {
+                font-size: 14px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- CABEÇALHO -->
+
+        <div class="cabecalho">
+
+            <h1>💻 Questionário de T.I.</h1>
+
+            <p>
+                Teste seus conhecimentos básicos sobre Tecnologia da Informação!
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 1
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>1. O que significa a sigla CPU?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Central Program Unit
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Central Processing Unit
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) Computer Personal Unit
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Control Processing User
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 2
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>2. Qual destes é um sistema operacional?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Google Chrome
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Windows
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) YouTube
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Google
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 3
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>3. Qual componente é responsável por armazenar arquivos permanentemente?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Memória RAM
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                B) Processador
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                C) SSD
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Cooler
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 4
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>4. O que é a Internet?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Um único computador gigante
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Uma rede mundial de computadores
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) Um sistema operacional
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Um programa de edição de texto
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 5
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>5. Qual destes é um navegador de Internet?</h2>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                A) Google Chrome
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                B) Windows
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) Linux
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Android
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 6
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>6. Para que serve a memória RAM?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Armazenar arquivos permanentemente
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Armazenar temporariamente dados utilizados pelos programas
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) Resfriar o computador
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Conectar o computador à Internet
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 7
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>7. Qual linguagem é utilizada para estruturar páginas da Web?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Python
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) HTML
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) SQL
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Java
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 8
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>8. Qual linguagem é responsável por adicionar interatividade às páginas Web?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) HTML
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                B) CSS
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                C) JavaScript
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) SQL
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 9
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>9. O que significa a sigla USB?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Universal System Board
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Universal Serial Bus
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) User System Base
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Universal Software Base
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             QUESTÃO 10
+        ========================== -->
+
+        <div class="questao">
+
+            <h2>10. O que é um vírus de computador?</h2>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                A) Um componente físico do computador
+            </button>
+
+            <button class="alternativa" onclick="responder(this, true)">
+                B) Um tipo de software malicioso
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                C) Um sistema operacional
+            </button>
+
+            <button class="alternativa" onclick="responder(this, false)">
+                D) Um navegador
+            </button>
+
+        </div>
+
+
+        <!-- RESULTADO -->
+
+        <div id="resultado">
+
+            <h2>🎉 Questionário finalizado!</h2>
+
+            <p id="pontuacao"></p>
+
+            <p id="mensagemFinal"></p>
+
+            <br>
+
+            <button id="reiniciar" onclick="reiniciarQuiz()">
+                🔄 Fazer novamente
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        /* =========================
+           VARIÁVEIS
+        ========================== */
+
+        let acertos = 0;
+
+        let questoesRespondidas = 0;
+
+
+        /* =========================
+           FUNÇÃO PARA RESPONDER
+        ========================== */
+
+        function responder(botao, estaCorreta) {
+
+            // Descobre qual questão contém o botão clicado
+
+            const questao = botao.parentElement;
+
+            // Pega todas as alternativas daquela questão
+
+            const alternativas =
+                questao.querySelectorAll(".alternativa");
+
+
+            // Verifica se a questão já foi respondida
+
+            if (questao.dataset.respondida === "true") {
+                return;
+            }
+
+
+            // Marca a questão como respondida
+
+            questao.dataset.respondida = "true";
+
+
+            // Aumenta o contador de questões respondidas
+
+            questoesRespondidas++;
+
+
+            /* =========================
+               SE A RESPOSTA ESTIVER CERTA
+            ========================== */
+
+            if (estaCorreta) {
+
+                botao.classList.add("correta");
+
+                acertos++;
+
+            }
+
+
+            /* =========================
+               SE A RESPOSTA ESTIVER ERRADA
+            ========================== */
+
+            else {
+
+                botao.classList.add("errada");
+
+
+                // Procura a alternativa correta
+
+                alternativas.forEach(function(alternativa) {
+
+                    // Verifica pelo atributo onclick
+                    // se aquela alternativa é a correta
+
+                    if (alternativa.getAttribute("onclick").includes("true")) {
+
+                        alternativa.classList.add("correta");
+
+                    }
+
+                });
+
+            }
+
+
+            /* =========================
+               DESABILITA AS ALTERNATIVAS
+            ========================== */
+
+            alternativas.forEach(function(alternativa) {
+
+                alternativa.classList.add("desativada");
+
+                alternativa.disabled = true;
+
+            });
+
+
+            /* =========================
+               VERIFICA SE TERMINOU
+            ========================== */
+
+            if (questoesRespondidas === 10) {
+
+                mostrarResultado();
+
+            }
+
+        }
+
+
+        /* =========================
+           MOSTRAR RESULTADO
+        ========================== */
+
+        function mostrarResultado() {
+
+            const resultado =
+                document.getElementById("resultado");
+
+            const pontuacao =
+                document.getElementById("pontuacao");
+
+            const mensagemFinal =
+                document.getElementById("mensagemFinal");
+
+
+            // Mostra o resultado
+
+            resultado.style.display = "block";
+
+
+            pontuacao.innerHTML =
+                "Você acertou " + acertos + " de 10 questões!";
+
+
+            /* Mensagem dependendo da pontuação */
+
+            if (acertos === 10) {
+
+                mensagemFinal.innerHTML =
+                    "🏆 Parabéns! Você acertou todas!";
+
+            }
+
+            else if (acertos >= 7) {
+
+                mensagemFinal.innerHTML =
+                    "👏 Muito bom! Você possui bons conhecimentos de T.I.";
+
+            }
+
+            else if (acertos >= 5) {
+
+                mensagemFinal.innerHTML =
+                    "👍 Bom trabalho! Continue estudando.";
+
+            }
+
+            else {
+
+                mensagemFinal.innerHTML =
+                    "📚 Continue estudando e tente novamente!";
+
+            }
+
+
+            // Faz a página descer até o resultado
+
+            resultado.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           REINICIAR QUESTIONÁRIO
+        ========================== */
+
+        function reiniciarQuiz() {
+
+            // Zera os contadores
+
+            acertos = 0;
+
+            questoesRespondidas = 0;
+
+
+            // Pega todas as questões
+
+            const questoes =
+                document.querySelectorAll(".questao");
+
+
+            questoes.forEach(function(questao) {
+
+                // Remove a marcação de respondida
+
+                delete questao.dataset.respondida;
+
+
+                // Pega todas as alternativas
+
+                const alternativas =
+                    questao.querySelectorAll(".alternativa");
+
+
+                alternativas.forEach(function(alternativa) {
+
+                    // Remove as cores
+
+                    alternativa.classList.remove(
+                        "correta",
+                        "errada",
+                        "desativada"
+                    );
+
+
+                    // Habilita novamente
+
+                    alternativa.disabled = false;
+
+                });
+
+            });
+
+
+            // Esconde o resultado
+
+            document.getElementById("resultado").style.display =
+                "none";
+
+
+            // Volta para o topo
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+```
